@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Queue;
 import java.util.Set;
+import java.util.ArrayList;
 import java.util.ArrayDeque;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -16,15 +17,20 @@ public class Task {
 
     // Завдання 1
     public void removeShorterStrings(List<String> list) {
-        for (int i = list.size() - 2; i >= 0; i -= 2) {
+        ArrayList<Integer> toRemove = new ArrayList<>();
+        
+        for (int i = 0; i < list.size() - 1; i += 2) {
             String first = list.get(i);
             String second = list.get(i + 1);
 
             if (first.length() <= second.length()) {
-                list.remove(i);
+                toRemove.add(i);
             } else {
-                list.remove(i + 1);
+                toRemove.add(i + 1);
             }
+        }
+        for (int i = toRemove.size() - 1; i >= 0; i--) {
+            list.remove((int) toRemove.get(i));
         }
     }
 
